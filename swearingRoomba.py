@@ -16,6 +16,9 @@ create = Create2Driver(serial_port = '/dev/serial0',
 create.start()
 create.full()
 
+#
+# Create a 'shut down' function that safely turns the roomba off.
+#
 import atexit
 def closeDown():
     create.drive_direct(0,0)
@@ -23,6 +26,15 @@ def closeDown():
     print 'shutting down ...'
 atexit.register(closeDown)
 
+#
+# The loop is as follows:
+#     1. Drive randomly until collistion
+#     2. when collision: play sound and evasive manouver
+#     3. go back to 1.
+#
+# Note: as the loop has to be ended at any time, each sub loop has to check
+#       if the 'stop_run' flag has been set.
+#
 def drive_and_swear(velocity_ = 0.3,
                     turn_     = 0.0,
                     sigma     = 0.025,
@@ -74,22 +86,34 @@ def drive_and_swear(velocity_ = 0.3,
         time.sleep(0.5)
             
 
+#
+# set up a response function.
+#
 def manual_run():
     thread = Thread(target=drive_and_swear)
     thread.start()
     return 'Drive and Swear!!!'
 
+
+#
+# stop any loop that is running in the main function
+#
 @app.route('/stop', methods=['GET'])
 def stop_run():
     global stop_run
     stop_run = True
     return 'Killing Roomba!!!'
 
+
+#
+# start a loop that drives and swears
+#
 @app.route('/driveAndSwear', methods=['GET'])
 def run_process():
     global stop_run
     stop_run = False
     return Response(manual_run(), mimetype='text/html')
+
 
 if __name__=='__main__':
     app.run(host='0.0.0.0', port=8000)
