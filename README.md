@@ -19,7 +19,7 @@ To communicate with the iRobot Create a 7-pin DIN cable can be purchased.
 A buck converter to step down the voltage to 5V is necessary.
 
 ### Logic Converter
-The Raspberry Pi needs a logic level converter to
+The Raspberry Pi needs a logic level converter to drop the 5V serial from the create to 3.3V for the Raspberry Pi.
 
 <p float="center">
 <img src="https://github.com/JamesUnicomb/GoRPiRoomba/blob/master/parts/RPi_shield_0.JPG" width="240" />
