@@ -2,7 +2,12 @@
 ## A Google Assitant activated Roomba that swears
 
 ## The Finished Product
-[![IThe swearing Roomba](https://www.youtube.com/watch?v=o8MG2z378pQ)](https://www.youtube.com/watch?v=o8MG2z378pQ)
+### Cleaning
+[![IThe cleaning Roomba](https://www.youtube.com/watch?v=o8MG2z378pQ/0.jpg)](https://www.youtube.com/watch?v=o8MG2z378pQ)
+
+### Swearing
+[![IThe swearing Roomba](https://www.youtube.com/watch?v=5lHFqUazzac/0.jpg)](https://www.youtube.com/watch?v=5lHFqUazzac)
+
 
 ## The Parts
 
