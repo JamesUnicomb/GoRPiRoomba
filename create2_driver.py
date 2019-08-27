@@ -217,10 +217,10 @@ class Create2Driver:
             if time.time() - timeout > 0.2:
                 return False
         d, = struct.unpack_from(">B", self._connection.read())
-        leftWheelDrop  = bool(d & 0x08)
-        rightWheelDrop = bool(d & 0x04)
-        leftBumper     = bool(d & 0x02)
         rightBumper    = bool(d & 0x01)
+        leftBumper     = bool(d & 0x02)
+        rightWheelDrop = bool(d & 0x04)
+        leftWheelDrop  = bool(d & 0x08)
         return leftWheelDrop, rightWheelDrop, leftBumper, rightBumper
 
     def getLightBumperArray(self):
