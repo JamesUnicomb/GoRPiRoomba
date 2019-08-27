@@ -44,7 +44,7 @@ class Sensor:
     RequestedLeftVelocity = 42
     LeftEncoderCounts = 43
     RightEncoderCounts = 44
-    RightBumper = 45
+    LightBumper = 45
     LightBumpLeftSignal = 46
     LightBumpFrontLeftSignal = 47
     LightBumpCenterLeftSignal = 48

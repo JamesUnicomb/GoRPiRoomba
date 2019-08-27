@@ -211,7 +211,7 @@ class Create2Driver:
         #
         # This function returns an array of bools corresponding to the bumpers being pressed.
         #
-        self._connection.write(struct.pack(">BB", Op.Sensors, Sensor.BumpsAndWheelDrops))
+        self._connection.write(struct.pack(">Bb", Op.Sensors, Sensor.BumpsAndWheelDrops))
         timeout = time.time()
         while not(self._connection.inWaiting()):
             if time.time() - timeout > 0.2:
@@ -222,6 +222,24 @@ class Create2Driver:
         leftBumper     = bool(d & 0x02)
         rightBumper    = bool(d & 0x01)
         return leftWheelDrop, rightWheelDrop, leftBumper, rightBumper
+
+    def getLightBumperArray(self):
+        #
+        # This function returns an array of bools corresponding to the bumpers being pressed.
+        #
+        self._connection.write(struct.pack(">Bb", Op.Sensors, Sensor.LightBumper))
+        timeout = time.time()
+        while not(self._connection.inWaiting()):
+            if time.time() - timeout > 0.2:
+                return False
+        d, = struct.unpack_from(">B", self._connection.read())
+        sideLeft    = bool(d & 0x01)
+        frontLeft   = bool(d & 0x02)
+        centerLeft  = bool(d & 0x04)
+        centerRight = bool(d & 0x08)
+        frontRight  = bool(d & 0x10)
+        sideRight   = bool(d & 0x20)
+        return sideLeft, frontLeft, centerLeft, centerRight, frontRight, sideRight
 
     def set_velocity(self, forward, turn, wheelBase = 0.235):
         #
